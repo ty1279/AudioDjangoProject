@@ -1,0 +1,49 @@
+{% include "upload.html" %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- jQuery -->
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+	<!--Custom css ADD HERE-->
+	
+	<!-- semantic UI -->
+	<!-- <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script> -->
+
+	<link rel="stylesheet" href="{%static 'myapp/home.css' %}">
+	<title>home</title>
+  </head>
+  <body>
+
+	<div id="main">
+		<div class="topBar">
+			<button class="button">PLAY</button>
+			<button class="button">STOP</button>
+			<button class="button">PLAY L AND R</button>
+		</div>
+		<div class="mid">
+			<form method="post">
+				<div class="selectBox1">
+					{% csrf_token %}
+					{{ aform }}
+				</div>
+				<button type="submit" class="okbutton"> Select </button>
+			</form>
+			
+		</div>
+		<div class="bot">
+			
+		</div>
+	</div>
+
+
+	<img  src="data:image/png;base64,{{ data }}" alt="" height="400" width="1000">
+	<audio controls>
+		<source src="file:///D/AudioUserInterfaceDjango/audioInterface/templates/korean2.mp3" type="audio/mpeg">
+	</audio>
+</body>
+</html>
