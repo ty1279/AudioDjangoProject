@@ -125,16 +125,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-# STATICFILES_DIRS = ['static']
-# STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 STATIC_URL = '/static/'		
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
-# # Upload to Server
-# SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-# DEBUG = os.getenv('DJANGO_DEBUG', False)
-# ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')

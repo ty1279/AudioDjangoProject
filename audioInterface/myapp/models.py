@@ -11,7 +11,7 @@ class Csv(models.Model):
 
 
 class Attribute(models.Model):
-    age = models.IntegerField()
+    age = models.FloatField()
     accent_group = models.IntegerField()
     sex_in_number = models.IntegerField()
 
