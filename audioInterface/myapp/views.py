@@ -11,6 +11,8 @@ import pandas as pd
 import numpy as np
 
 def home(request):
+	x_axis = ""
+	y_axis = ""
 	if request.method == "POST" :
 		form = ContactForm(request.POST)
 		if form.is_valid():
@@ -24,13 +26,12 @@ def home(request):
 	################################################################################################
 	#######################################		 CSV File	 #######################################
 	################################################################################################
-	print("hmm")
 	age = []
 	accent_group = []
 	sex_in_number = []
 
 	with open('D:/4114_6391_bundle_archive/speakers_all.csv') as f:
-		print("here")
+		print("Start loading csv file ...")
 		reader = csv.reader(f)
 		next(f)
 		for row in reader:
@@ -50,8 +51,34 @@ def home(request):
 	axis_values_x = []
 	axis_values_y = []
 
-	for (item1, item2) in zip(age, accent_group):
-   		generated_data.append((item1, item2))
+	if (x_axis == "age") & (y_axis == "age") :
+		for (item1, item2) in zip(age, age):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "age") & (y_axis == "gender") :
+		for (item1, item2) in zip(age, sex_in_number):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "age") & (y_axis == "accent") :
+		for (item1, item2) in zip(age, accent_group):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "gender") & (y_axis == "age") :
+		for (item1, item2) in zip(sex_in_number, age):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "gender") & (y_axis == "gender") :
+		for (item1, item2) in zip(sex_in_number, sex_in_number):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "gender") & (y_axis == "accent") :
+		for (item1, item2) in zip(sex_in_number, accent_group):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "accent") & (y_axis == "age") :
+		for (item1, item2) in zip(accent_group, age):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "accent") & (y_axis == "gender") :
+		for (item1, item2) in zip(accent_group, sex_in_number):
+   			generated_data.append((item1, item2))
+	elif (x_axis == "accent") & (y_axis == "accent") :
+		for (item1, item2) in zip(accent_group, accent_group):
+   			generated_data.append((item1, item2))
+
 
 	# print(generated_data)
 	for index, instance in enumerate(generated_data):
@@ -66,6 +93,7 @@ def home(request):
 	print(axis_values_y)
 
 	fig = plt.figure(figsize=(20, 16))
+	#plt.figure(dpi=1200)
 	ax = fig.add_subplot(1,1,1,picker=True)
 
 	ax.scatter(
@@ -75,15 +103,18 @@ def home(request):
 		)
 	ax.set_title("Voice Samples")
 
-	#convert graph into dtring buffer and then we convert 64 bit code into image
-	buf = io.BytesIO()
-	fig.savefig(buf,format='png')
-	buf.seek(0)
-	string = base64.b64encode(buf.read())
-	uri =  urllib.parse.quote(string)
+	plt.xlabel(x_axis)
+	plt.ylabel(y_axis)
+	plt.savefig('static/images/new_file.png')
+
+	# buf = io.BytesIO()
+	# fig.savefig(buf,format='png', dpi=400)
+	# buf.seek(0)
+	# string = base64.b64encode(buf.read())
+	# uri =  urllib.parse.quote(string)
 	
 	# Select box form
 	form = ContactForm()
 
-	return render(request, 'home.html', {'aform': form, 'data': uri})
+	return render(request, 'home.html', {'aform': form})#, 'data': uri})
 
