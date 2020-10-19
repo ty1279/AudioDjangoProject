@@ -33,28 +33,24 @@
 			
 		</div>
 		<div class="mid2">
-
+			<button class="zoom_btn">zoom in (+)</button>
+			<button class="zoom_btn">zoom out (-)</button>
 		</div>
-		<div style="width:1000;height:100">
-			{% autoescape off %}
- 			{{ plot_div }}
-  			{% endautoescape %}
-		</div>
-	</div>
-
-
+		<img class = "image_class" src="{%static 'images/new_file.png' %}" alt="" style="width:100%; height:20%; margin-left: auto; margin-right: auto;">
+	</div>	
     
 	<div id="bottom">
-        <div class="audio-control">
-            <audio controls class="audio-control">
+        <div class="audio-control-home2">
+            <audio controls class="audio-control-home2">
                 <source src="{%static 'medias/korean2.mp3' %}" type="audio/mpeg">
             </audio>
         </div>
         <div>
             <button type="button">
-            <a href="{% url 'home2' %}">Interface 2 (temporary)</a>
+            <a href="{% url 'home' %}">Back to Interface 1</a>
             </button>
         </div>
     </div>
+
 </body>
 </html>

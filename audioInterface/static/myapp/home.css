@@ -15,7 +15,7 @@ body{
     margin-right: 10px;
     display: inline-block;
     padding: 15px 20px;
-    font-size: 13px;
+    font-size: 10px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -60,4 +60,14 @@ body{
 
 .zoom_btn {
     float: right;
+}
+.audio-control {
+    float: right;
+    margin-right: 28px;
+    margin-bottom: 20px;
+}
+.audio-control-home2 {
+    float: right;
+    margin-right: 55px;
+    margin-bottom: 20px;
 }
